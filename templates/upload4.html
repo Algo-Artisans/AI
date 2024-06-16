@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>morakmorak</title>
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: bold;
+            margin: 20px;
+            padding: 0;
+            background-color: white;
+        }
+        p {
+            text-align: center;
+            font-weight: bold;
+            color: black;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            letter-spacing: -1.7px;
+        }
+        .highlight {
+            color: #0FD417;
+            font-weight: bold;
+        }
+        form {
+            text-align: center;
+            margin-top: 30px;
+        }
+        #upload-btn {
+            display: none;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        input[type="file"] + label {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        input[type="file"] + label:hover {
+            background-color: #0056b3;
+        }
+        button[type="button"] {
+            padding: 15px 60px;
+            background-color: #0FD417;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+        }
+        button[type="button"]:hover {
+            background-color: #218838;
+        }
+        h2 {
+            text-align: center;
+            margin-top: 80px;
+            font-weight: bold;
+        }
+        img {
+            display: block;
+            height: 260px;
+            margin-top: 40px;
+            margin-left: auto;
+            margin-right : auto;
+
+        }
+        .gif-container {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .small-gif {
+            width: 50%;
+            height: 30%;
+        }
+    </style>
+</head>
+<!--<body>-->
+<!--    <a href="https://imgbb.com/"><img src="https://i.ibb.co/qBtVmmw/morak.png" alt="morak" border="0" /></a>-->
+<!--    <p><span class="highlight">정방형</span>의 얼굴 사진을 <span class="highlight">중앙</span>에<br> 위치하게 해주세요! </p>-->
+<!--    <p> 인생 머리를 찾을 준비가 되셨나요? </p>-->
+
+<!--    <form action="/predict" method="post" enctype="multipart/form-data">-->
+<!--        <button type="button" onclick="document.getElementById('file').click()">네!</button>-->
+<!--        <input type="file" name="file" id="file" accept="image/*" style="display:none" onchange="document.getElementById('upload-btn').click();" required>-->
+<!--        <button id="upload-btn" type="submit">사진 업로드</button>-->
+<!--        <a href='https://ifh.cc/v-5lm3X0' target='_blank'><img src='https://ifh.cc/g/5lm3X0.gif' border='0'></a>-->
+<!--    </form>-->
+<!--</body>-->
+<!--</html>-->
+<body>
+    <a href="https://imgbb.com/"><img src="https://i.ibb.co/qBtVmmw/morak.png" alt="morak" border="0" /></a>
+    <p><span class="highlight">정방형</span>의 얼굴 사진을 <span class="highlight">중앙</span>에<br> 위치하게 해주세요! </p>
+    <p> 인생 머리를 찾을 준비가 되셨나요? </p>
+
+    <form action="/predict" method="post" enctype="multipart/form-data">
+        <button type="button" id="upload-trigger">네!</button>
+        <input type="file" name="file" id="file" accept="image/*" style="display:none" required>
+        <button id="upload-btn" type="submit" style="display:none">사진 업로드</button>
+        <div class="gif-container" id="gif-container">
+            <a href='https://ifh.cc/v-5lm3X0' target='_blank'><img src='https://ifh.cc/g/5lm3X0.gif' class="small-gif" border='0'></a>
+        </div>
+    </form>
+    <script>
+        document.getElementById('upload-trigger').addEventListener('click', function() {
+            document.getElementById('file').click(); // 파일 업로드 input 클릭
+        });
+
+        // 파일이 업로드되면 GIF를 표시
+        document.getElementById('file').addEventListener('change', function() {
+            document.getElementById('upload-btn').click(); // 사진 업로드 버튼 클릭
+            document.getElementById('gif-container').style.display = 'block'; // GIF 표시
+        });
+    </script>
+</body>
+</html>

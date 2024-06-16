@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Image</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+        }
+        form {
+            text-align: center;
+            margin-top: 30px;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        input[type="file"] + label {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        input[type="file"] + label:hover {
+            background-color: #0056b3;
+        }
+        button[type="submit"] {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button[type="submit"]:hover {
+            background-color: #218838;
+        }
+        h2 {
+            text-align: center;
+            margin-top: 30px;
+        }
+        img {
+            display: block;
+            margin: 0 auto;
+            max-width: 300px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <h1>모락모락</h1>
+    <form action="/predict" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" id="file" accept="image/*" required>
+        <label for="file">사진 선택</label>
+        <button type="submit">사진 업로드</button>
+    </form>
+
+    {% if result %}
+        <h2>유저님의 얼굴형: {{ result }}</h2>
+    {% endif %}
+
+    {% if least_likely_result %}
+        <h2>유저님과 반대의 얼굴형: {{ least_likely_result }}</h2>
+    {% endif %}
+
+    {% if generated_images_predicted %}
+        <h2>Generated Images for Predicted Face Shape</h2>
+        <div>
+            {% for img_url in generated_images_predicted %}
+                <img src="{{ img_url }}" alt="Generated Image">
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% if generated_images_least_likely %}
+        <h2>Generated Images for Least Likely Face Shape</h2>
+        <div>
+            {% for img_url in generated_images_least_likely %}
+                <img src="{{ img_url }}" alt="Generated Image">
+            {% endfor %}
+        </div>
+    {% endif %}
+</body>
+</html>
