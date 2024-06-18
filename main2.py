@@ -100,7 +100,6 @@ def post_json_data(predicted_class, least_likely_class_label, global_token):
 def upload_file():
     return render_template('upload4.html')
 
-
 load_dotenv()
 
 aws_url = os.environ.get("AWS_URL")
@@ -150,10 +149,8 @@ def generate_and_upload_synthesized_images(file_path, predicted_class, least_lik
     os.makedirs(result_dir, exist_ok=True)
 
     # 결과 이미지 생성
-    # (생성된 이미지들의 경로를 저장할 리스트 생성)
     generated_images = []
 
-    # S3에 업로드할 결과 이미지의 키 생성
     def generate_image_key(image_name):
         return f"{s3_results_dir}/{image_name}"
 
@@ -210,19 +207,14 @@ def predict():
     result_dir = os.path.join('results', current_datetime)
     os.makedirs(result_dir, exist_ok=True)
 
-    # Generate and upload synthesized images for both predicted class and least likely class
     generated_images = generate_and_upload_synthesized_images(local_file_path, predicted_class,
                                                               least_likely_class_label, result_dir, current_datetime, global_kakao_id)
 
     post_json_data(predicted_class, least_likely_class_label, global_token)
 
-
-
     redirect_url = f"https://morak-morak-demo.vercel.app/user?bestFace={predicted_class}&worstFace={least_likely_class_label}"
 
-
     return redirect(redirect_url)
-
 
 @app.route('/api/receivekakaoid', methods=['POST'])
 def receive_kakao_id():
