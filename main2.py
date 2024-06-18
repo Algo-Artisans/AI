@@ -178,7 +178,6 @@ def generate_synthesized_image(target_image_path, source_image_path, output_dir)
     cmd = f"python image_test.py --target_img_path {target_image_path} --source_img_path {source_image_path} --output_dir {output_dir} --use_gpu True"
     subprocess.run(cmd, shell=True, check=True)
 
-    # Assuming the synthesized image is saved with a certain prefix, adjust this part accordingly
     synthesized_image_name = "result_" + os.path.basename(target_image_path)
     synthesized_image_path = os.path.join(output_dir, synthesized_image_name)
     return synthesized_image_path
